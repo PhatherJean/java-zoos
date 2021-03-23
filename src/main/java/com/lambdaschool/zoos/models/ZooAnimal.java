@@ -23,20 +23,38 @@ public class ZooAnimal  extends Auditable implements Serializable
     @JsonIgnoreProperties(value = "animal", allowSetters = true)
     private Zoo zoo;
 
+    private String incomingzoo;
+
     public ZooAnimal()
     {
         //JPA use
     }
 
-    public ZooAnimal(Animal animal, Zoo zoo)
+    public ZooAnimal(Zoo zoo, Animal animal, String incomingzoo)
     {
         this.animal = animal;
         this.zoo = zoo;
+        this.incomingzoo = incomingzoo;
+    }
+
+    public ZooAnimal(Zoo zoo, Animal animal)
+    {
+        this.animal = animal;
+        this.zoo = zoo;
+        this.incomingzoo = null;
     }
 
     public Animal getAnimal()
     {
         return animal;
+    }
+
+    public String getIncomingzoo() {
+        return incomingzoo;
+    }
+
+    public void setIncomingzoo(String incomingzoo) {
+        this.incomingzoo = incomingzoo;
     }
 
     public void setAnimal(Animal animal)
@@ -60,10 +78,8 @@ public class ZooAnimal  extends Auditable implements Serializable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ZooAnimal that = (ZooAnimal) o;
-        return ((this.getZoo() == null) ? 0 : this.getZoo().getZooid()) ==
-                ((this.getZoo() == null) ? 0 : this.getZoo().getZooid()) &&
-                ((this.getAnimal() == null) ? 0 : this.getAnimal().getAnimalid()) ==
-                        ((this.getAnimal() == null) ? 0 : this.getAnimal().getAnimalid());
+        return ((this.getZoo() == null) ? 0 : this.getZoo().getZooid()) == ((this.getZoo() == null) ? 0 : this.getZoo().getZooid()) &&
+                ((this.getAnimal() == null) ? 0 : this.getAnimal().getAnimalid()) == ((this.getAnimal() == null) ? 0 : this.getAnimal().getAnimalid());
     }
 
     @Override
